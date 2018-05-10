@@ -4,10 +4,11 @@ project( sdl2_conan_example CXX )
 
 include(conan.cmake)
 
-conan_cmake_run(REQUIRES sdl2/2.0.8@bincrafters/stable
+conan_cmake_run(REQUIRES sdl2/2.0.8@yarikth/stable
                 BASIC_SETUP CMAKE_TARGETS
                 BUILD missing
 				OPTIONS sdl2:shared=True
+				OPTIONS sdl2:libiconv=False
 				IMPORTS "bin, *.dll -> ./bin" # Copies all dll files from packages bin folder to my "bin" folder
 				IMPORTS "lib, *.dylib* -> ./bin" # Copies all dylib files from packages lib folder to my "bin" folder
 				IMPORTS "lib, *.so* -> ./bin" # Copies all dylib files from packages lib folder to my "bin" folder
