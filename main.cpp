@@ -10,7 +10,6 @@ static SDL_GLContext gl_context;
 
 
 void render() {
-
 	SDL_GL_MakeCurrent(window, gl_context);
 
 	r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
@@ -19,22 +18,17 @@ void render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	SDL_GL_SwapWindow(window);
-
-} //render
+}
 
 
 int SDLCALL watch(void *userdata, SDL_Event* event) {
-
 	if (event->type == SDL_APP_WILLENTERBACKGROUND) {
 		quitting = true;
 	}
-
 	return 1;
 }
 
 int main(int argc, char *argv[]) {
-
-
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
 		SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
 		return 1;
@@ -48,17 +42,14 @@ int main(int argc, char *argv[]) {
 
 
 	while (!quitting) {
-
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) {
 				quitting = true;
 			}
 		}
-
 		render();
 		SDL_Delay(2);
-
 	}
 
 	SDL_DelEventWatch(watch, NULL);
@@ -68,4 +59,4 @@ int main(int argc, char *argv[]) {
 
 	exit(0);
 
-} //main
+}
